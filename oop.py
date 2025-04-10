@@ -29,8 +29,22 @@ iphones = []  # Stores all phones
 
     for battery in battery_levels:
         iphone = Phone(battery=battery)  
-        iphones.append(iphone)  
+        iphones.append(iphone) 
 
+
+class ProPhone(Phone):  
+    def __init__(self, battery, storage=256):  
+        super().__init__(battery=battery)  # Inherits brand="iPhone", model="iOS"  
+        self.storage = storage  
+
+    def take_4k_video(self):  
+        self.battery -= 10  
+        print(f"🎥 Recording 4K video! Battery left: {self.battery}% | Storage: {self.storage}GB")  
+
+# Test ProPhone
+pro_iphone = ProPhone(battery=85)  
+pro_iphone.describe()          # Output: 📱 iPhone iOS | Battery: 85%  
+pro_iphone.take_4k_video()     # Output: 🎥 Recording 4K video! Battery left: 75% | Storage: 256GB  
 # Print all iPhones
     for iphone in iphones:
         iphone.describe()  
